@@ -28,5 +28,16 @@ namespace APIsComCsharp.Controllers
       return Ok(contact);
 
     }
+
+    [HttpGet("{id}")]
+    public IActionResult GetId(int id)
+    {
+      var contact = _context.Contacts.Find(id);
+      if (contact == null)
+        return NotFound();
+
+
+      return Ok(contact);
+    }
   }
 }
