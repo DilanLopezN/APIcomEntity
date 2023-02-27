@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace APIsComCsharp.Entities
 {
-  public class Contato
+  public class Contact
   {
     public int Id { get; set; }
     public string Name { get; set; }
