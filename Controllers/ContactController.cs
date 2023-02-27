@@ -25,7 +25,7 @@ namespace APIsComCsharp.Controllers
     {
       _context.Add(contact);
       _context.SaveChanges();
-      return Ok(contact);
+      return CreatedAtAction(nameof(GetName), new { id = contact.Id }, contact);
 
     }
 
@@ -38,6 +38,13 @@ namespace APIsComCsharp.Controllers
 
 
       return Ok(contact);
+    }
+
+    [HttpGet("GetNames")]
+    public IActionResult GetName(string name)
+    {
+      var contacts = _context.Contacts.Where(x => x.Name.Contains(name));
+      return Ok(contacts);
     }
 
     [HttpPut("{id}")]
