@@ -55,7 +55,18 @@ namespace APIsComCsharp.Controllers
       _context.SaveChanges();
 
       return Ok(contactDb);
+    }
 
+    [HttpDelete("{id}")]
+    public IActionResult Delete(int id)
+    {
+      var contactDb = _context.Contacts.Find(id);
+      if (contactDb == null)
+        return NotFound();
+
+      _context.Contacts.Remove(contactDb);
+      _context.SaveChanges();
+      return NoContent();
 
     }
   }
