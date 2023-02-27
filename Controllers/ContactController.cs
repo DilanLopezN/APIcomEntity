@@ -39,5 +39,24 @@ namespace APIsComCsharp.Controllers
 
       return Ok(contact);
     }
+
+    [HttpPut("{id}")]
+    public IActionResult Update(int id, Contact contact)
+    {
+      var contactDb = _context.Contacts.Find(id);
+      if (contactDb == null)
+        return NotFound();
+
+      contactDb.Name = contact.Name;
+      contactDb.Phone = contact.Phone;
+      contactDb.IsActive = contact.IsActive;
+
+      _context.Contacts.Update(contactDb);
+      _context.SaveChanges();
+
+      return Ok(contactDb);
+
+
+    }
   }
 }
